@@ -1,9 +1,9 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "loganduran/fade-zoom-slider",
+	"name": "loganduran/wgd-projects-gallery-block",
 	"version": "0.1.0",
-	"title": "Fade Zoom Slider",
+	"title": "WebGrid Projects Gallery Slider",
 	"category": "widgets",
 	"icon": "smiley",
 	"description": "Example block scaffolded with Create Block tool.",
@@ -22,7 +22,7 @@
 			"default": []
 		}
 	},
-	"textdomain": "fade-zoom-slider",
+	"textdomain": "wgd-projects-gallery-block",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
