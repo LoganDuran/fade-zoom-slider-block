@@ -29,4 +29,4 @@ function wgd_projects_gallery_block_init()
 {
 	register_block_type(__DIR__ . '/build');
 }
-add_action('init', 'wgd_projects_gallery_block_ini');
+add_action('init', 'wgd_projects_gallery_block_init');
