@@ -20,6 +20,29 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/#view-script
  */
 
-/* eslint-disable no-console */
-console.log( 'Hello World! (from wgd-projects-block)' );
-/* eslint-enable no-console */
+let currentSlide = 0;
+
+const slides = document.querySelectorAll(".slide");
+const totalSlides = slides.length;
+
+function showSlide(index) {
+	slides.forEach((slide, i) => {
+		if (i === index) {
+			slide.classList.add("active");
+		} else {
+			slide.classList.remove("active");
+		}
+	});
+}
+
+function nextSlide() {
+	currentSlide = (currentSlide + 1) % totalSlides;
+	showSlide(currentSlide);
+}
+
+function startSlider() {
+	showSlide(currentSlide);
+	setInterval(nextSlide, 5000);
+}
+
+document.addEventListener("DOMContentLoaded", startSlider);

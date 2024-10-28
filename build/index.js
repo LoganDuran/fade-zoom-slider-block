@@ -62,7 +62,12 @@ function Edit({
     images
   } = attributes;
   const ALLOWED_MEDIA_TYPES = ["image"];
-  console.log(images);
+  const removeImage = index => {
+    const newImages = images.filter((img, i) => i !== index);
+    setAttributes({
+      images: newImages
+    });
+  };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)()
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
@@ -71,7 +76,7 @@ function Edit({
     }),
     allowedTypes: ALLOWED_MEDIA_TYPES,
     multiple: true,
-    addToGaller: true,
+    addToGallery: true,
     gallery: true,
     value: images.map(img => img.id),
     render: ({
@@ -85,7 +90,11 @@ function Edit({
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: img.url,
     alt: img.alt
-  }))));
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    className: "wgd-remove-img-btn",
+    isDestructive: true,
+    onClick: () => removeImage(index)
+  }, "Remove"))));
 }
 
 /***/ }),
@@ -176,10 +185,20 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @return {Element} Element to render.
  */
-function save() {
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+function save({
+  attributes
+}) {
+  const {
+    images
+  } = attributes;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
-  }, "WebGrid Projects Gallery – hello from the saved content!");
+  }, images.map((img, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "slide"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: img.url,
+    alt: img.alt
+  }))));
 }
 
 /***/ }),
@@ -264,7 +283,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"loganduran/fade-zoom-slider","version":"0.1.0","title":"Fade Zoom Slider","category":"widgets","icon":"smiley","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"align":true,"dimensions":{"aspectRatio":true,"minHeight":true}},"attributes":{"images":{"type":"array","default":[]}},"textdomain":"fade-zoom-slider","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"loganduran/wgd-projects-gallery-block","version":"0.1.0","title":"WebGrid Projects Gallery Slider","category":"widgets","icon":"smiley","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"align":true,"dimensions":{"aspectRatio":true,"minHeight":true}},"attributes":{"images":{"type":"array","default":[]}},"textdomain":"wgd-projects-gallery-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ })
 
@@ -419,7 +438,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/tru
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
-/******/ 		var chunkLoadingGlobal = globalThis["webpackChunkfade_zoom_slider"] = globalThis["webpackChunkfade_zoom_slider"] || [];
+/******/ 		var chunkLoadingGlobal = globalThis["webpackChunkwgd_projects_gallery_block"] = globalThis["webpackChunkwgd_projects_gallery_block"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
