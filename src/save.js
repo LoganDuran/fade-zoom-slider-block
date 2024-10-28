@@ -15,10 +15,16 @@ import { useBlockProps } from "@wordpress/block-editor";
  *
  * @return {Element} Element to render.
  */
-export default function save() {
+export default function save({ attributes }) {
+	const { images } = attributes;
+
 	return (
-		<p {...useBlockProps.save()}>
-			{"WebGrid Projects Gallery – hello from the saved content!"}
-		</p>
+		<div {...useBlockProps.save()}>
+			{images.map((img, index) => (
+				<div className="slide">
+					<img src={img.url} alt={img.alt} />
+				</div>
+			))}
+		</div>
 	);
 }
