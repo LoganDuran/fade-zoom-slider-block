@@ -26,7 +26,7 @@ var __webpack_exports__ = {};
  */
 
 /* eslint-disable no-console */
-console.log('Hello World! (from loganduran-fade-zoom-slider block)');
+console.log('Hello World! (from wgd-projects-block)');
 /* eslint-enable no-console */
 /******/ })()
 ;
