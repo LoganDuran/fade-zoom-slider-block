@@ -4,6 +4,17 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-loganduran-fade-zoom-slider {
+
+.wp-block-loganduran-wgd-projects-gallery-block {
 	border: 1px dotted #f00;
+	.slide {
+		opacity: 1;
+	}
+	.wgd-remove-img-btn{
+		position: absolute;
+		bottom: 1em;
+		right: 1em;
+		background-color: rgb(243, 107, 107);
+		color: white;
+	}
 }

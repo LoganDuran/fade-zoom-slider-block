@@ -40,7 +40,11 @@ export default function Edit({ attributes, setAttributes }) {
 
 	const ALLOWED_MEDIA_TYPES = ["image"];
 
-	console.log(images);
+	const removeImage = (index) => {
+		const newImages = images.filter((img, i) => i !== index);
+		setAttributes({ images: newImages });
+	};
+
 	return (
 		<div {...useBlockProps()}>
 			<MediaUploadCheck>
@@ -48,7 +52,7 @@ export default function Edit({ attributes, setAttributes }) {
 					onSelect={(media) => setAttributes({ images: media })}
 					allowedTypes={ALLOWED_MEDIA_TYPES}
 					multiple
-					addToGaller
+					addToGallery
 					gallery
 					value={images.map((img) => img.id)}
 					render={({ open }) => (
@@ -61,6 +65,13 @@ export default function Edit({ attributes, setAttributes }) {
 			{images.map((img, index) => (
 				<div className="slide">
 					<img src={img.url} alt={img.alt} />
+					<Button
+						className="wgd-remove-img-btn"
+						isDestructive
+						onClick={() => removeImage(index)}
+					>
+						Remove
+					</Button>
 				</div>
 			))}
 		</div>
