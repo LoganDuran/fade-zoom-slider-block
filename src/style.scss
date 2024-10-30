@@ -8,6 +8,7 @@
  .wp-block-loganduran-wgd-projects-gallery-block {
 	color: #fff;
 	padding: 2px;
+	position: relative;
 }
 
 .slide {
@@ -30,7 +31,7 @@
 	&.active {
 		opacity: 1;
 		img {
-			transform: scale(1.1);
+			transform: scale(1.03);
 		}
 	}
 }

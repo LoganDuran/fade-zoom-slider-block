@@ -191,7 +191,13 @@ function save({
   const {
     images
   } = attributes;
+  function getUniqueId() {
+    return "custom-block-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
+  }
+  const uniqueId = getUniqueId();
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "custom-block",
+    "data-block-id": uniqueId,
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
   }, images.map((img, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "slide"

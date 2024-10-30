@@ -24,28 +24,37 @@ var __webpack_exports__ = {};
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/#view-script
  */
-
-let currentSlide = 0;
-const slides = document.querySelectorAll(".slide");
-const totalSlides = slides.length;
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    if (i === index) {
-      slide.classList.add("active");
-    } else {
-      slide.classList.remove("active");
-    }
+function initializeSlider(blockId) {
+  let currentSlide = 0;
+  const block = document.querySelector(`[data-block-id="${blockId}"]`);
+  if (!block) return;
+  const slides = block.querySelectorAll(".slide");
+  const totalSlides = slides.length;
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      if (i === index) {
+        slide.classList.add("active");
+      } else {
+        slide.classList.remove("active");
+      }
+    });
+  }
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+  }
+  function startSlider() {
+    showSlide(currentSlide);
+    setInterval(nextSlide, 5000);
+  }
+  startSlider();
+}
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("[data-block-id]").forEach(block => {
+    const blockId = block.getAttribute("data-block-id");
+    initializeSlider(blockId);
   });
-}
-function nextSlide() {
-  currentSlide = (currentSlide + 1) % totalSlides;
-  showSlide(currentSlide);
-}
-function startSlider() {
-  showSlide(currentSlide);
-  setInterval(nextSlide, 5000);
-}
-document.addEventListener("DOMContentLoaded", startSlider);
+});
 /******/ })()
 ;
 //# sourceMappingURL=view.js.map
