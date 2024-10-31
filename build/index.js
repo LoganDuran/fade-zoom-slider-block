@@ -61,6 +61,18 @@ function Edit({
   const {
     images
   } = attributes;
+  function generateUniqueId() {
+    return "custom-block-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
+  }
+  if (!attributes.blockId) {
+    const newBlockId = generateUniqueId();
+    setAttributes({
+      blockId: newBlockId
+    });
+  }
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
+    "data-block-id": attributes.blockId
+  });
   const ALLOWED_MEDIA_TYPES = ["image"];
   const removeImage = index => {
     const newImages = images.filter((img, i) => i !== index);
@@ -69,7 +81,7 @@ function Edit({
     });
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)()
+    ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
     onSelect: media => setAttributes({
       images: media
@@ -191,14 +203,11 @@ function save({
   const {
     images
   } = attributes;
-  function getUniqueId() {
-    return "custom-block-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
-  }
-  const uniqueId = getUniqueId();
+  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
+    "data-block-id": attributes.blockId
+  });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "custom-block",
-    "data-block-id": uniqueId,
-    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
+    ...blockProps
   }, images.map((img, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "slide"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
@@ -289,7 +298,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"loganduran/wgd-projects-gallery-block","version":"0.1.0","title":"WebGrid Projects Gallery Slider","category":"widgets","icon":"smiley","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"align":true,"dimensions":{"aspectRatio":true,"minHeight":true}},"attributes":{"images":{"type":"array","default":[]}},"textdomain":"wgd-projects-gallery-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"loganduran/wgd-projects-gallery-block","version":"0.1.0","title":"WebGrid Projects Gallery Slider","category":"widgets","icon":"smiley","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"align":true,"dimensions":{"aspectRatio":true,"minHeight":true}},"attributes":{"blockId":{"type":"string"},"images":{"type":"array","default":[]}},"textdomain":"wgd-projects-gallery-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ })
 

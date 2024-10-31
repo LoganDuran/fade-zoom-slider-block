@@ -17,6 +17,9 @@
     }
   },
   "attributes": {
+    "blockId": {
+      "type": "string"
+    },
     "images": {
       "type": "array",
       "default": []

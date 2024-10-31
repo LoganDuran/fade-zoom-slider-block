@@ -38,6 +38,21 @@ import "./editor.scss";
 export default function Edit({ attributes, setAttributes }) {
 	const { images } = attributes;
 
+	function generateUniqueId() {
+		return (
+			"custom-block-" + Date.now() + "-" + Math.floor(Math.random() * 1000)
+		);
+	}
+
+	if (!attributes.blockId) {
+		const newBlockId = generateUniqueId();
+		setAttributes({ blockId: newBlockId });
+	}
+
+	const blockProps = useBlockProps({
+		"data-block-id": attributes.blockId,
+	});
+
 	const ALLOWED_MEDIA_TYPES = ["image"];
 
 	const removeImage = (index) => {
@@ -46,7 +61,7 @@ export default function Edit({ attributes, setAttributes }) {
 	};
 
 	return (
-		<div {...useBlockProps()}>
+		<div {...blockProps}>
 			<MediaUploadCheck>
 				<MediaUpload
 					onSelect={(media) => setAttributes({ images: media })}

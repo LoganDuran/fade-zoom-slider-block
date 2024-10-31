@@ -18,19 +18,12 @@ import { useBlockProps } from "@wordpress/block-editor";
 export default function save({ attributes }) {
 	const { images } = attributes;
 
-	function getUniqueId() {
-		return (
-			"custom-block-" + Date.now() + "-" + Math.floor(Math.random() * 1000)
-		);
-	}
-	const uniqueId = getUniqueId();
+	const blockProps = useBlockProps.save({
+		"data-block-id": attributes.blockId,
+	});
 
 	return (
-		<div
-			className="custom-block"
-			data-block-id={uniqueId}
-			{...useBlockProps.save()}
-		>
+		<div {...blockProps}>
 			{images.map((img, index) => (
 				<div className="slide">
 					<img src={img.url} alt={img.alt} />
